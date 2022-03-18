@@ -44,4 +44,26 @@ router.post(
   },
 );
 
+router.put(
+  '/:id',
+  isTokenValid,
+  isNameValid,
+  isAgeValid,
+  isTalkFieldValid,
+  async (req, res) => {
+    const { body: { name, age, talk }, params: { id } } = req;
+
+    const talkers = await readTalkers();
+    const talkerIndex = talkers.findIndex((t) => t.id === parseInt(id, 10));
+    
+    if (talkerIndex === -1) return res.status(404).json({ message: 'Palestrante não encontrado' });
+
+    talkers[talkerIndex] = { ...talkers[talkerIndex], name, age, talk };
+
+    await writeTalkers(talkers);
+
+    return res.status(200).json(talkers[talkerIndex]);
+  },
+);
+
 module.exports = router;

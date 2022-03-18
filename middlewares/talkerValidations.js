@@ -42,13 +42,13 @@ const isAgeValid = (req, res, next) => {
 };
 
 const getTalkConditions = (talk) => (
-  !talk || !talk.watchedAt || !talk.rate || talk.watchedAt === '' || talk.rate === ''
+  !talk || !talk.watchedAt || talk.rate === undefined || talk.watchedAt === '' || talk.rate === ''
 );
 const getRateConditions = (rate) => !Number.isInteger(rate) || rate < 1 || rate > 5;
 
 const isTalkFieldValid = (req, res, next) => {
   const { talk } = req.body;
-  
+
   if (getTalkConditions(talk)) return res.status(400).json(invalidTalk);
   
   if (!talk.watchedAt.match(validDateRegex)) return res.status(400).json(invalidWatchedAt);
