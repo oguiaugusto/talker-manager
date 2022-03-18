@@ -66,4 +66,22 @@ router.put(
   },
 );
 
+router.delete(
+  '/:id',
+  isTokenValid,
+  async (req, res) => {
+    const { id } = req.params;
+
+    const talkers = await readTalkers();
+    const talkerIndex = talkers.findIndex((t) => t.id === parseInt(id, 10));
+    
+    if (talkerIndex === -1) return res.status(404).json({ message: 'Palestrante não encontrado' });
+
+    talkers.splice(talkerIndex, 1);
+    await writeTalkers(talkers);
+
+    return res.status(204).end();
+  },
+);
+
 module.exports = router;
