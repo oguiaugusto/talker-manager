@@ -35,7 +35,11 @@ router.post(
     const { name, age, talk } = req.body;
 
     const talkers = await readTalkers();
-    const talker = await writeTalkers({ name, age, id: (talkers.length + 1), talk });
+    const talker = { name, age, id: (talkers.length + 1), talk };
+
+    talkers.push(talker);
+    await writeTalkers(talkers);
+
     return res.status(201).json(talker);
   },
 );
