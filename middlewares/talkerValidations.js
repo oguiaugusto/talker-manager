@@ -64,4 +64,4 @@ module.exports = {
   isTalkFieldValid,
 };
 
-// Source validDateRegex: https://www.codegrepper.com/code-examples/javascript/javascript+validate+date+dd%2Fmm%2Fyyyy
+// Source validDateRegex: https://stackoverflow.com/questions/5465375/javascript-date-regex-dd-mm-yyyy
