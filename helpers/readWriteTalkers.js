@@ -10,14 +10,11 @@ const readTalkers = async () => {
   }
 };
 
-const writeTalkers = async (talker) => {
+const writeTalkers = async (content) => {
   try {
-    const talkers = await readTalkers();
+    await fs.writeFile('./talker.json', JSON.stringify(content, null, 2));
 
-    talkers.push(talker);
-    await fs.writeFile('./talker.json', JSON.stringify(talkers, null, 2));
-
-    return talker;
+    return content;
   } catch (err) {
     console.log(err);
     return null;
