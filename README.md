@@ -1,4 +1,4 @@
-# Welcome to my MySQL All For One repository!
+# Welcome to my Talker Manager repository!
 
 This project was made by [Guilherme Augusto](https://github.com/oguiaugusto), using Node and Express to validate knowledge learned in [Trybe](https://www.betrybe.com/).
 
